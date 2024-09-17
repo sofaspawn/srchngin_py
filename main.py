@@ -10,27 +10,34 @@ def tokenize(textdir):
 	corpus = {}
 	for path in paths:
 		f = open(join(textdir, path))
-		tokens = re.findall(r'[a-zA-Z0-9]', f.read())
+		tokens = re.findall(r'[\w]+', f.read())
 		tokens = [token.lower() for token in tokens ]
 		corpus[path] = Counter(tokens)
 	return corpus
 
-def tfidf(term, corpus):
-	term_tokens = re.findall(r'[a-zA-Z0-9]', term)
+def tfidf(query, corpus):
+	query = re.findall(r'[\w]+', query)
+	query = [q.lower() for q in query]
+	#print(query)
+
+	occur = {}
+
 	for file in corpus.keys():
-
-
+		for term in query:
+			if term in corpus[file]:
+				occur[file] = corpus[file][term]
+	print(occur)
 
 
 def main():
 	textdir = './text-files'
 	corpus = tokenize(textdir)
 	'''
-	for k, v in tokens.items():
-		print("{} -> {}".format(k, v))
-	#print(tokens)
-	'''
-	tfidf("murders", corpus)
+	for k in corpus.keys():
+		print(k,corpus[k])
+		break
+		'''
+	tfidf("e", corpus)
 
 if __name__ == "__main__":
 	main()
