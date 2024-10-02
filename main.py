@@ -15,29 +15,26 @@ def tokenize(textdir):
 		corpus[path] = Counter(tokens)
 	return corpus
 
-def tfidf(query, corpus):
-	query = re.findall(r'[\w]+', query)
-	query = [q.lower() for q in query]
-	#print(query)
-
-	occur = {}
-
-	for file in corpus.keys():
-		for term in query:
-			if term in corpus[file]:
-				occur[file] = corpus[file][term]
-	print(occur)
-
+def termfreq(target, tokens):
+	tfs = {}
+	for k in tokens.keys():
+		count = 0
+		for c in tokens[k].values():
+			count += c
+		tf = float(tokens[k][target])/float(count)
+		tfs[k] = tf
+	return tfs
 
 def main():
 	textdir = './text-files'
-	corpus = tokenize(textdir)
-	'''
-	for k in corpus.keys():
-		print(k,corpus[k])
-		break
-		'''
-	tfidf("e", corpus)
+	target1 = "noble"
+	target2 = "is"
+	files_2_tokens = tokenize(textdir)
+	freqs1 = termfreq(target1, files_2_tokens)
+	freqs2 = termfreq(target2, files_2_tokens)
+	print("{}: {}".format(target1, freqs1))
+	print()
+	print("{}: {}".format(target2, freqs2))
 
 if __name__ == "__main__":
 	main()
