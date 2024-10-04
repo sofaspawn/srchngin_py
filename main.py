@@ -17,7 +17,13 @@ def tokenize(textdir):
         return corpus
 
 def tf(target, tokens):
-        return {k:log10(1 + tokens[k][target]) for k in tokens.keys()}
+        # return {k:log10(1 + tokens[k][target]) for k in tokens.keys()}
+        ret = {}
+        for f,c in tokens.items():
+                total = float(sum(c.values()))
+                count = float(c[target])
+                ret[f] = count/total
+        return ret
 
 def idf(target, tokens):
         total = len(list(tokens.keys()))+1
@@ -36,9 +42,10 @@ def tfidf(target, tokens):
         return ret
 
 def handleinput(s):
+        # maybe use some kind of combination of both these things
         # should i search by word or by characters? idk
-        # return re.findall(r'[\w]+', s)
-        return re.findall(r'[a-zA-Z]', s)
+        return re.findall(r'[\w]+', s)
+        # return re.findall(r'[a-zA-Z]', s)
 
 def main():
         textdir = './text-files'
