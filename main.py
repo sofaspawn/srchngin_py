@@ -35,14 +35,25 @@ def tfidf(target, tokens):
                 ret[k] = v*idfs
         return ret
 
+def handleinput(s):
+        return re.findall(r'[\w]+', s)
+
 def main():
         textdir = './text-files'
-        targets = ["noble", "is"]
+        search_term = input(">")
+        targets = handleinput(search_term)
         files_2_tokens = tokenize(textdir)
+        final = {}
         for target in targets:
+                # combine the results of the loop and return sorted
                 tfidfs = tfidf(target, files_2_tokens)
-                print("{}: {}".format(target, tfidfs))
-                print()
+                for k,v in tfidfs.items():
+                        if k in final:
+                                final[k]+=v
+                        else:
+                                final[k]=v
+        final = sorted(final, key=final.get, reverse=True)
+        print(final)
 
 if __name__ == "__main__":
         main()
