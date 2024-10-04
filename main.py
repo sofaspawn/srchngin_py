@@ -36,7 +36,9 @@ def tfidf(target, tokens):
         return ret
 
 def handleinput(s):
-        return re.findall(r'[\w]+', s)
+        # should i search by word or by characters? idk
+        # return re.findall(r'[\w]+', s)
+        return re.findall(r'[a-zA-Z]', s)
 
 def main():
         textdir = './text-files'
@@ -45,7 +47,6 @@ def main():
         files_2_tokens = tokenize(textdir)
         final = {}
         for target in targets:
-                # combine the results of the loop and return sorted
                 tfidfs = tfidf(target, files_2_tokens)
                 for k,v in tfidfs.items():
                         if k in final:
