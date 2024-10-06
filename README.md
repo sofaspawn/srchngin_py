@@ -15,6 +15,6 @@
 - [x] read text files
 - [x] tokenize files
 - [x] implement tfidf
-- [ ] make a user interface using flask
+- [ ] host on server using flask
 - [ ] add the ability to search in any folder
 - [ ] make the thing recursive
