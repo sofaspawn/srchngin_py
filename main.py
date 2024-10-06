@@ -1,5 +1,3 @@
-#! /usr/bin/env python3
-
 from math import log10
 from os import listdir
 from os.path import isfile, join
@@ -44,7 +42,7 @@ def tfidf(target, tokens):
 def handleinput(s):
         # maybe use some kind of combination of both these things
         # should i search by word or by characters? idk
-        return re.findall(r'[\w]+', s)
+        return [i.lower() for i in re.findall(r'[\w]+', s)]
         # return re.findall(r'[a-zA-Z]', s)
 
 def main():
