@@ -13,7 +13,9 @@ def tokenize(textdir):
         for path in paths:
                 f = open(join(textdir, path))
                 tokens = re.findall(r'[\w]+', f.read())
+                #tokens_by_chars = re.findall(r'[a-zA-Z]+', f.read())
                 tokens = [token.lower() for token in tokens ]
+                #tokens.append([token.lower() for token in tokens_by_chars])
                 corpus[path] = Counter(tokens)
         return corpus
 
@@ -46,11 +48,17 @@ def handleinput(s):
         # maybe use some kind of combination of both these things
         # should i search by word or by characters? idk
         return [i.lower() for i in re.findall(r'[\w]+', s)]
-        # return re.findall(r'[a-zA-Z]', s)
+        #ret.append([i.lower() for i in re.findall(r'[a-zA-Z]+', s)])
+
+def render(final):
+    print()
+    for i,v in enumerate(final):
+        print("{}. {}".format(i+1,v))
 
 def main():
         textdir = './text-files'
-        search_term = input(">")
+        print("Search: ")
+        search_term = input()
         targets = handleinput(search_term)
         files_2_tokens = tokenize(textdir)
         final = {}
@@ -62,7 +70,7 @@ def main():
                         else:
                                 final[k]=v
         final = sorted(final, key=final.get, reverse=True)
-        print(final)
+        render(final)
 
 if __name__ == "__main__":
         main()
