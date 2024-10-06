@@ -4,6 +4,9 @@ from os.path import isfile, join
 from collections import Counter
 import re
 
+def testfunc():
+    return "<h1>test passed</h1>"
+
 def tokenize(textdir):
         paths = [f for f in listdir(textdir) if isfile(join(textdir, f))]
         corpus = {}

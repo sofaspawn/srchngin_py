@@ -6,3 +6,8 @@ app = Flask(__name__)
 def hello():
     f = open("./static/index.html")
     return f.read()
+
+@app.route("/test")
+def test():
+    return testfunc()
+

@@ -1,5 +1,9 @@
 # SrchNgin
 - local files search engine in python
+- prefer the standard term frequency over logarithmic term frequency
+![](./pubs/tf.png)
+- dividing the user input based into individual words instead of individiual characters
+![](./pubs/inputs.png)
 
 ## Challenges:
 - having problems with the implementation
