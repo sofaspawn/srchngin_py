@@ -3,7 +3,7 @@
 ![](./pubs/result.png)
 - prefer the standard term frequency over logarithmic term frequency
 ![](./pubs/tf.png)
-- dividing the user input based into individual words instead of individiual characters
+- dividing the user input into individual words instead of individual characters
 ![](./pubs/inputs.png)
 
 ## Challenges:
